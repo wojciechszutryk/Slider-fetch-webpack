@@ -3,7 +3,7 @@ import '../sass/style.scss';
 class Dog {
     constructor() {
         this.apiURL = 'https://dog.ceo/api';
-        this.imgElement = document.querySelector('.dog-image img');
+        this.imgElement = document.querySelectorAll('.dog-details__image img');
 
         this.init();
     }
@@ -12,8 +12,8 @@ class Dog {
             .then(response => response.json())
             .then(data => {return data.message})
     };
-    async getRandomImage(){
-        return await fetch(`${this.apiURL}/breeds/image/random`)
+    getRandomImage(){
+        return fetch(`${this.apiURL}/breeds/image/random`)
             .then(response => response.json())
             .then(data => {return data.message})
     };
@@ -24,8 +24,10 @@ class Dog {
     };
 
     init(){
-        this.getRandomImage()
-            .then(src => this.imgElement.setAttribute('src', src));
+        [...this.imgElement].forEach(element => {
+            this.getRandomImage()
+                .then(src => element.setAttribute('src', src));
+        })
         this.listAllBreads()
             .then(breeds => console.log(breeds))
     }

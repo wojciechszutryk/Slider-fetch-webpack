@@ -1,0 +1,22 @@
+@import 'variables';
+
+.header-container{
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+h1{
+  margin: $spacing auto;
+  font-family: 'Yellowtail', cursive;
+  font-size: 50px;
+  color: $text-color;
+  text-align: center;
+}
+
+h2{
+  margin: $spacing auto;
+  font-family: 'Akaya Kanadaka', cursive;
+  font-size: 40px;
+  color: lighten($text-color,10%);
+}
