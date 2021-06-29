@@ -1,9 +1,13 @@
 @import 'variables';
 
 .header-container{
+  display: flex;
   width: 100%;
   max-width: $max-width;
   margin: 0 auto;
+  input{
+    flex-grow: 1;
+  }
 }
 
 h1{
