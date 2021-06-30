@@ -5,7 +5,14 @@ class Dog {
         this.apiURL = 'https://dog.ceo/api';
         this.breedsUl = document.querySelector('.dog-details__list');
         this.search = document.querySelector('.header-container input');
+        this.spinner = document.querySelector('.spinner');
         this.init();
+    }
+    showLoading(){
+        this.spinner.classList.add('spinner--visible');
+    }
+    hideLoading(){
+        this.spinner.classList.remove('spinner--visible');
     }
     async listBreads(){
         const breedList = [];
@@ -31,6 +38,7 @@ class Dog {
             .then(data => {return data.message})
     };
     addBreedToDOM(breed){
+        this.showLoading();
         let breedUrl = breed;
         if (breedUrl.includes(' ')) breedUrl = breed.replace(' ', '/')
 
@@ -52,11 +60,14 @@ class Dog {
         });
 
         this.breedsUl.appendChild(li);
+        this.hideLoading();
     }
 
     async init(){
+        this.showLoading();
         const list = await this.listBreads();
-        list.forEach(breed => this.addBreedToDOM(breed));
+        await list.forEach(breed => this.addBreedToDOM(breed));
+        this.hideLoading();
     }
 }
 

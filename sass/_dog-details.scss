@@ -8,8 +8,22 @@
 .dog-details__list{
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+    flex-direction: row;
+    .dog-details__image {
+      height: auto;
+      width: 100%;
+      img {
+        width: 100%;
+        max-height: 75vh;
+        min-width: 0;
+      }
+    }
+  }
+
   .dog-details__image{
-    height: 40vh;
+    height: 300px;
     flex-grow: 1;
     position: relative;
     cursor: pointer;
