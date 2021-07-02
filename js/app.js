@@ -4,9 +4,10 @@ class Dog {
     constructor() {
         this.apiURL = 'https://dog.ceo/api';
         this.breedsUl = document.querySelector('.dog-details__list');
-        this.search = document.querySelector('.header-container input');
         this.spinner = document.querySelector('.spinner');
+        this.search = document.querySelector('.header-container input');
         this.init();
+        this.search.addEventListener('change', (e)=>this.init(e.target.value));
     }
     showLoading(){
         this.spinner.classList.add('spinner--visible');
@@ -62,11 +63,16 @@ class Dog {
         this.breedsUl.appendChild(li);
         this.hideLoading();
     }
+    renderFiltered(list,phrase){
+        const listToRender = list.filter(item => item.includes(phrase));
+        this.breedsUl.innerHTML = '';
+        listToRender.forEach(breed => this.addBreedToDOM(breed));
+    }
 
-    async init(){
+    async init(phrase = ""){
         this.showLoading();
         const list = await this.listBreads();
-        await list.forEach(breed => this.addBreedToDOM(breed));
+        this.renderFiltered(list,phrase);
         this.hideLoading();
     }
 }
