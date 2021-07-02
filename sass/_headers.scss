@@ -7,6 +7,29 @@
   margin: 0 auto;
   input{
     flex-grow: 1;
+    height: 40px;
+    font-size: 30px;
+    line-height: 30px;
+    padding: 3px;
+    margin-left: 17px;
+    margin-top: 10px;
+    text-align: center;
+    border:1px solid #704d4d;
+    font-family: 'Akaya Kanadaka', cursive;
+    transition: .1s;
+    color: $text-color;
+    &::placeholder{
+      color: $text-color;
+      opacity: 0.4;
+    }
+    &::-ms-input-placeholder{
+      color: $text-color;
+      opacity: 0.4;
+    }
+    &:focus {
+      outline: none !important;
+      border:1px solid $text-color;
+    }
   }
 }
 
